@@ -73,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void goAction() {
         String text = mEditText.getText().toString();
-        getHashTags(text);
+        // this step is mandated for the url and clickable styles.
+        mResultTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        mResultTextView.setText(getHashTags(text));
     }
 
-    private void getHashTags(String str) {
+    private SpannableStringBuilder getHashTags(String str) {
         Log.d(TAG, "getHashTags " + str);
         String regex = "#([A-Za-z0-9]+)";
         Pattern pattern = Pattern.compile(regex);
@@ -92,10 +94,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // this step is mandated for the url and clickable styles.
-        mResultTextView.setMovementMethod(LinkMovementMethod.getInstance());
-        mResultTextView.setText(ssb);
-
+        return ssb;
     }
 
     public class MyClickableSpan extends ClickableSpan {
