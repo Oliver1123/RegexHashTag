@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getHashTags(String str) {
         Log.d(TAG, "getHashTags " + str);
-        String regex = "#+([A-Za-z0-9]+)";
+        String regex = "#([A-Za-z0-9]+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         SpannableStringBuilder ssb = new SpannableStringBuilder(str);
